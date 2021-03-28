@@ -8,6 +8,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
 import android.widget.Button
+import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -16,12 +17,36 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
+        val shakeButton: Button = findViewById(R.id.button)
+        shakeButton.setOnClickListener {
+            shakeMagicBall()
+        }
+
+        val backgroundSwitch: Switch = findViewById(R.id.switch1)
+        backgroundSwitch.setOnClickListener {
+            backgroundSwitch.run { setBackgroundResource(R.drawable.bg2) }
+
+        }
+
+    }
+
+/*
+    fun changeBackground() {
+        val backgroundSwitch: Button = findViewById(R.id.switch1)
+        backgroundSwitch.setOnClickListener {
+            backgroundSwitch.setBackgroundDrawable(R.drawable.bg2)
+        }
+
+    }*/
+
+    fun shakeToClick() {
         val shakeButton: Button = findViewById(R.id.button)
         shakeButton.setOnClickListener {
             shakeMagicBall()
         }
     }
+
 
     //Vibrates phone on click
     private fun vibratePhone() {
@@ -29,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= 26) {
             vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
-           // vibrator.vibrate(200)
+            // vibrator.vibrate(200)
             vibrator.run { 200 }
         }
     }
@@ -92,3 +117,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+   /* private fun setBackgroundDrawable() {
+        val backgroundSwitch: Switch = findViewById(R.id.switch1)
+        backgroundSwitch.setBackgroundResource(R.drawable.bg2);
+    }
+        val go = setBackgroundDrawable() */
+
+
