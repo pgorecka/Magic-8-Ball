@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:fullBackupContent="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.Magic8Ball_Bg_1">
         <activity android:name=".MainActivity">
 
             <intent-filter>

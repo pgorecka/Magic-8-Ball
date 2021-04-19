@@ -1,44 +1,79 @@
 package com.example.magic8ball
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+
 //Allows the user to shake the ball and view the result on the screen
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
+       // setTheme(R.style.Theme_Magic8Ball_Bg_1);
         setContentView(R.layout.activity_main)
+
+        toggleDesign()
 
         val shakeButton: Button = findViewById(R.id.button)
         shakeButton.setOnClickListener {
             shakeMagicBall()
         }
-
-        val backgroundSwitch: Switch = findViewById(R.id.switch1)
-        backgroundSwitch.setOnClickListener {
-            backgroundSwitch.run { setBackgroundResource(R.drawable.bg2) }
-
-        }
-
     }
 
-/*
-    fun changeBackground() {
-        val backgroundSwitch: Button = findViewById(R.id.switch1)
-        backgroundSwitch.setOnClickListener {
-            backgroundSwitch.setBackgroundDrawable(R.drawable.bg2)
-        }
 
-    }*/
+
+
+
+    @SuppressLint("NewApi")
+    private fun toggleDesign() {
+        val toggleBtn: Switch = this.findViewById(R.id.switch1)
+        val ball: ImageView = this.findViewById(R.id.imageView2)
+        val text: TextView = this.findViewById(R.id.textView)
+        val askBtn: Button = this.findViewById(R.id.button)
+
+       // var appBackground:
+        //val bg = toggleBackground()
+        toggleBtn.setOnCheckedChangeListener { _, isChecked ->
+           //  if (isChecked) toggle.background = this.getDrawable(R.drawable.bg2)
+            if (isChecked) {
+              //  setTheme(Theme_Magic8Ball_Bg_2)
+               // setTheme(R.style.Theme_Magic8Ball_Bg_2);
+                ball.setImageResource(R.drawable.magic_ball_2)
+                text.setTextColor(Color.parseColor("#000034"))
+                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(158, 121, 129))
+
+             //   recreate()
+
+                println("pressed")
+            }//AppCompatDelegate.MODE_NIGHT_NO//setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)  //toggle.background = getDrawable(R.drawable.bg2)
+            else {
+                ball.setImageResource(R.drawable.magic_ball)
+                text.setTextColor(Color.parseColor("#FFFFFFFF"))
+                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(0, 24, 58))
+            }
+
+
+
+                //setTheme(R.style.Theme_Magic8Ball_Bg_1)//AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)//toggle.setBackgroundResource(R.drawable.bg1)
+            //ConstraintLayout
+        }
+    }
 
     fun shakeToClick() {
         val shakeButton: Button = findViewById(R.id.button)
@@ -61,14 +96,14 @@ class MainActivity : AppCompatActivity() {
 
     //Shakes the ball and updates the screen with the result
     private fun shakeMagicBall() {
-        //Create new ball object with 20 possibilities and shakes it
+        //Create new ball object with 20 possible answers and shakes it
         val ball = MagicBall(20)
         val say = ball.answer()
         vibratePhone()
 
-//Update the screen with the dice roll
+        //Update the screen with the dice roll
         val resultTextView: TextView = findViewById(R.id.textView)
-// resultTextView.text = diceRoll.toString()
+        // resultTextView.text = diceRoll.toString()
         resultTextView.text = say
     }
 
@@ -78,31 +113,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         fun answer(): String {
-            val prophecy: String
-            when (shake()) {
-                1 -> prophecy = "As I see it, yes."
-                2 -> prophecy = "Ask again later."
-                3 -> prophecy = "Better\n not tell you\n now."
-                4 -> prophecy = "Cannot predict \nnow."
-                5 -> prophecy = "Concentrate \nand ask \nagain."
-                6 -> prophecy = "Don’t count on it."
-                7 -> prophecy = "It is certain."
-                8 -> prophecy = "It is decidedly so."
-                9 -> prophecy = "Most likely."
-                10 -> prophecy = "My reply is no."
-                11 -> prophecy = "My sources\n say no."
-                12 -> prophecy = "Outlook\n not so good."
-                13 -> prophecy = "Outlook good."
-                14 -> prophecy = "Reply hazy\n try again."
-                15 -> prophecy = "Signs point to yes."
-                16 -> prophecy = "Very doubtful."
-                17 -> prophecy = "Without a doubt."
-                18 -> prophecy = "Yes."
-                19 -> prophecy = "Yes – definitely."
-                20 -> prophecy = "You may rely on it."
-                else -> prophecy = "Error"
+            return when (shake()) {
+                1 -> "As I see it, yes."
+                2 -> "Ask again later."
+                3 -> "Better\n not tell you\n now."
+                4 -> "Cannot predict \nnow."
+                5 -> "Concentrate \nand ask \nagain."
+                6 -> "Don’t count on it."
+                7 -> "It is certain."
+                8 -> "It is decidedly so."
+                9 -> "Most likely."
+                10 -> "My reply is no."
+                11 -> "My sources\n say no."
+                12 -> "Outlook\n not so good."
+                13 -> "Outlook good."
+                14 -> "Reply hazy\n try again."
+                15 -> "Signs point to yes."
+                16 -> "Very doubtful."
+                17 -> "Without a doubt."
+                18 -> "Yes."
+                19 -> "Yes – definitely."
+                20 -> "You may rely on it."
+                else -> "Error"
             }
-            return prophecy
         }
     }
 
@@ -117,11 +150,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
-   /* private fun setBackgroundDrawable() {
-        val backgroundSwitch: Switch = findViewById(R.id.switch1)
-        backgroundSwitch.setBackgroundResource(R.drawable.bg2);
-    }
-        val go = setBackgroundDrawable() */
-
-
