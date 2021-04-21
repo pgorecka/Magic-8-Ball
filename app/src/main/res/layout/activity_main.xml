@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainActivity"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
@@ -9,7 +11,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/ask_button"
         android:layout_width="144dp"
         android:layout_height="0dp"
         android:layout_marginBottom="80dp"
@@ -22,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/magic_ball_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -38,7 +40,7 @@
         app:srcCompat="@drawable/magic_ball" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/response_window"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
@@ -73,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/magic_ball_img"
         app:layout_constraintVertical_bias="0.125" />
 
     <Button
@@ -93,14 +95,17 @@
         app:layout_constraintVertical_bias="0.024" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/theme_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
+        android:checked="false"
         android:text="@string/change_theme"
-        android:textColorHighlight="#9E7981"
-        android:textColorLink="#9E7981"
+        android:textColorHighlight="@color/white"
+        android:textColorLink="@color/white"
+        android:thumbTint="@color/white"
+        android:trackTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/shareButton"
         app:layout_constraintHorizontal_bias="0.04"

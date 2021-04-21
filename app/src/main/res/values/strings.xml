@@ -3,6 +3,6 @@
     <string name="roll">ASK</string>
     <string name="question">Enter your question here..</string>
     <string name="background">background</string>
-    <string name="backgroundswitch">BackgroundSwitch</string>
+    <string name="background_switch">BackgroundSwitch</string>
     <string name="change_theme">Change theme</string>
 </resources>

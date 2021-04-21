@@ -24,75 +24,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-
-       // setTheme(R.style.Theme_Magic8Ball_Bg_1);
         setContentView(R.layout.activity_main)
 
         toggleDesign()
 
-        val shakeButton: Button = findViewById(R.id.button)
+        val shakeButton: Button = findViewById(R.id.ask_button)
         shakeButton.setOnClickListener {
             shakeMagicBall()
         }
     }
 
-
-
-
-
-    @SuppressLint("NewApi")
-    private fun toggleDesign() {
-        val toggleBtn: Switch = this.findViewById(R.id.switch1)
-        val ball: ImageView = this.findViewById(R.id.imageView2)
-        val text: TextView = this.findViewById(R.id.textView)
-        val askBtn: Button = this.findViewById(R.id.button)
-
-       // var appBackground:
-        //val bg = toggleBackground()
-        toggleBtn.setOnCheckedChangeListener { _, isChecked ->
-           //  if (isChecked) toggle.background = this.getDrawable(R.drawable.bg2)
-            if (isChecked) {
-              //  setTheme(Theme_Magic8Ball_Bg_2)
-               // setTheme(R.style.Theme_Magic8Ball_Bg_2);
-                ball.setImageResource(R.drawable.magic_ball_2)
-                text.setTextColor(Color.parseColor("#000034"))
-                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(158, 121, 129))
-
-             //   recreate()
-
-                println("pressed")
-            }//AppCompatDelegate.MODE_NIGHT_NO//setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)  //toggle.background = getDrawable(R.drawable.bg2)
-            else {
-                ball.setImageResource(R.drawable.magic_ball)
-                text.setTextColor(Color.parseColor("#FFFFFFFF"))
-                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(0, 24, 58))
-            }
-
-
-
-                //setTheme(R.style.Theme_Magic8Ball_Bg_1)//AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)//toggle.setBackgroundResource(R.drawable.bg1)
-            //ConstraintLayout
-        }
-    }
-
-    fun shakeToClick() {
-        val shakeButton: Button = findViewById(R.id.button)
-        shakeButton.setOnClickListener {
-            shakeMagicBall()
-        }
-    }
-
-
-    //Vibrates phone on click
-    private fun vibratePhone() {
-        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= 26) {
-            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
-        } else {
-            // vibrator.vibrate(200)
-            vibrator.run { 200 }
-        }
-    }
 
     //Shakes the ball and updates the screen with the result
     private fun shakeMagicBall() {
@@ -102,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         vibratePhone()
 
         //Update the screen with the dice roll
-        val resultTextView: TextView = findViewById(R.id.textView)
+        val resultTextView: TextView = findViewById(R.id.response_window)
         // resultTextView.text = diceRoll.toString()
         resultTextView.text = say
     }
@@ -136,6 +77,49 @@ class MainActivity : AppCompatActivity() {
                 20 -> "You may rely on it."
                 else -> "Error"
             }
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private fun toggleDesign() {
+        val toggleBtn: Switch = this.findViewById(R.id.theme_switch)
+        val ballImg: ImageView = this.findViewById(R.id.magic_ball_img)
+        val textStyle: TextView = this.findViewById(R.id.response_window)
+        val askBtn: Button = this.findViewById(R.id.ask_button)
+        val background: View = this.findViewById(R.id.mainActivity)
+
+        toggleBtn.setOnCheckedChangeListener { _, isChecked ->
+
+            if (isChecked) {
+                ballImg.setImageResource(R.drawable.magic_ball_2)
+                textStyle.setTextColor(Color.parseColor("#000034"))
+                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(158, 121, 129))
+                background.setBackgroundResource(R.drawable.bg2)
+            }
+            else {
+                ballImg.setImageResource(R.drawable.magic_ball)
+                textStyle.setTextColor(Color.parseColor("#FFFFFFFF"))
+                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(0, 24, 58))
+                background.setBackgroundResource(R.drawable.bg1)
+            }
+        }
+    }
+
+    fun shakeToClick() {
+        val shakeButton: Button = findViewById(R.id.ask_button)
+        shakeButton.setOnClickListener {
+            shakeMagicBall()
+        }
+    }
+
+    //Vibrates phone on click
+    private fun vibratePhone() {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= 26) {
+            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            // vibrator.vibrate(200)
+            vibrator.run { 200 }
         }
     }
 
