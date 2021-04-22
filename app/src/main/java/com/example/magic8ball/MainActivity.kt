@@ -15,11 +15,13 @@ import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.todo.shakeit.core.ShakeDetector
+import com.todo.shakeit.core.ShakeIt
+import com.todo.shakeit.core.ShakeListener
 
 
-//Allows the user to shake the ball and view the result on the screen
+// Allows the user to shake the ball and view the result on the screen
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -28,26 +30,29 @@ class MainActivity : AppCompatActivity() {
 
         toggleDesign()
 
+        ShakeIt.init(application)
+
+        shakeToClick()
+
         val shakeButton: Button = findViewById(R.id.ask_button)
         shakeButton.setOnClickListener {
             shakeMagicBall()
         }
     }
 
-
-    //Shakes the ball and updates the screen with the result
+    // Shakes the ball and updates the screen with the result
     private fun shakeMagicBall() {
-        //Create new ball object with 20 possible answers and shakes it
+        // Creates new ball object with 20 possible answers and shakes it
         val ball = MagicBall(20)
         val say = ball.answer()
         vibratePhone()
 
-        //Update the screen with the dice roll
+        // Updates the screen with the result
         val resultTextView: TextView = findViewById(R.id.response_window)
-        // resultTextView.text = diceRoll.toString()
         resultTextView.text = say
     }
 
+    // Returns random response
     class MagicBall(private val options: Int) {
         private fun shake(): Int {
             return (1..options).random()
@@ -80,7 +85,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("NewApi")
+    // Allow to switch between themes
+    @SuppressLint("NewApi", "UseSwitchCompatOrMaterialCode")
     private fun toggleDesign() {
         val toggleBtn: Switch = this.findViewById(R.id.theme_switch)
         val ballImg: ImageView = this.findViewById(R.id.magic_ball_img)
@@ -89,7 +95,6 @@ class MainActivity : AppCompatActivity() {
         val background: View = this.findViewById(R.id.mainActivity)
 
         toggleBtn.setOnCheckedChangeListener { _, isChecked ->
-
             if (isChecked) {
                 ballImg.setImageResource(R.drawable.magic_ball_2)
                 textStyle.setTextColor(Color.parseColor("#000034"))
@@ -105,24 +110,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun shakeToClick() {
-        val shakeButton: Button = findViewById(R.id.ask_button)
-        shakeButton.setOnClickListener {
-            shakeMagicBall()
-        }
+    // Detects device movement and shakes the ball
+    private fun shakeToClick() {
+        ShakeDetector.registerForShakeEvent(object : ShakeListener {
+            override fun onShake() {
+                shakeMagicBall()
+            }
+        })
     }
 
-    //Vibrates phone on click
+    // Vibrates phone on click
     private fun vibratePhone() {
         val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= 26) {
             vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
-            // vibrator.vibrate(200)
             vibrator.run { 200 }
         }
     }
 
+    // Allows sharing the app
     fun shareIntent(view: View) {
         val shareBtn = findViewById<Button>(R.id.shareButton)
         shareBtn.setOnClickListener {
