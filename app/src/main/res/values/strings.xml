@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Magic 8 Ball</string>
     <string name="roll">ASK</string>
-    <string name="question">Enter your question here..</string>
+    <string name="question">Shake your phone or press "ASK"</string>
     <string name="background">background</string>
     <string name="background_switch">BackgroundSwitch</string>
     <string name="change_theme">Change theme</string>
