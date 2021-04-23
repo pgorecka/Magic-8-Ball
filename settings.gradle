@@ -1,3 +1,2 @@
-include ':shake detect'
 include ':app'
 rootProject.name = "Magic 8 Ball"

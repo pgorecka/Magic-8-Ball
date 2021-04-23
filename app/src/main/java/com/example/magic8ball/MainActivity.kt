@@ -34,10 +34,25 @@ class MainActivity : AppCompatActivity() {
 
         shakeToClick()
 
+        //settings()
+
         val shakeButton: Button = findViewById(R.id.ask_button)
         shakeButton.setOnClickListener {
             shakeMagicBall()
         }
+
+        //}
+
+
+        val settingsBtn: Button = findViewById(R.id.settings_btn)
+
+        settingsBtn.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+
+            }
+
+
     }
 
     // Shakes the ball and updates the screen with the result
