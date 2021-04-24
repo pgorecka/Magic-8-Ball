@@ -36,7 +36,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/magic_ball" />
 
     <TextView
@@ -60,35 +59,20 @@
         tools:text="1" />
 
     <TextView
-        android:id="@+id/hint_text"
+        android:id="@+id/intro_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/question"
+        android:fontFamily="sans-serif"
+        android:hint="@string/intro_text"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/magic_ball_img"
-        app:layout_constraintVertical_bias="0.125" />
-
-    <Button
-        android:id="@+id/shareButton"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/share_icon_40146"
-        android:onClick="shareIntent"
-        app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.158" />
 
     <Switch
         android:id="@+id/theme_switch"
@@ -118,9 +102,25 @@
         android:background="@drawable/settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/shareButton"
-        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.968" />
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="30dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/share"
+        android:onClick="shareIntent"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -155,4 +155,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(intent, "Share To:"))
         }
     }
+
 }

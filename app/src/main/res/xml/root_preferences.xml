@@ -1,27 +1,27 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<PreferenceCategory app:title="@string/messages_header">
+	<PreferenceCategory app:title="@string/sound_header">
 
-		<EditTextPreference
-			app:key="signature"
-			app:title="@string/signature_title"
-			app:useSimpleSummaryProvider="true" />
+		<SwitchPreferenceCompat
+			app:key="music"
+			app:title="@string/music_title"
+			app:useSimpleSummaryProvider="true"
+			app:icon="@drawable/music"/>
 
-		<ListPreference
-			app:defaultValue="reply"
-			app:entries="@array/reply_entries"
-			app:entryValues="@array/reply_values"
-			app:key="reply"
-			app:title="@string/reply_title"
-			app:useSimpleSummaryProvider="true" />
+		<SwitchPreferenceCompat
+			app:key="vibration"
+			app:title="@string/vibration_title"
+			app:useSimpleSummaryProvider="true"
+			app:icon="@drawable/vibration"/>
 
 	</PreferenceCategory>
 
-	<PreferenceCategory app:title="@string/sync_header">
+	<PreferenceCategory app:title="@string/font_header">
 
 		<SwitchPreferenceCompat
-			app:key="sync"
-			app:title="@string/sync_title" />
+			app:key="text_size"
+			app:title="@string/text_size"
+			app:icon="@drawable/text_size2"/>
 
 		<SwitchPreferenceCompat
 			app:dependency="sync"
@@ -30,6 +30,11 @@
 			app:summaryOn="@string/attachment_summary_on"
 			app:title="@string/attachment_title" />
 
+		<Preference
+			app:key="feedback"
+			app:title="Send feedback"
+			app:summary="Report technical issues or suggest new features"
+			app:icon="@drawable/feedback" />
 	</PreferenceCategory>
 
 </PreferenceScreen>

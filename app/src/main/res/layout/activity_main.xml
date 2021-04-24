@@ -10,7 +10,7 @@
     tools:ignore="ExtraText">
 
     <TextView
-        android:id="@+id/hint_text"
+        android:id="@+id/intro_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/question"
@@ -78,7 +78,7 @@
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/share_icon_40146"
+        android:background="@drawable/share"
         android:onClick="shareIntent"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,8 +1,8 @@
 package com.example.magic8ball
 
 import android.os.Bundle
-import androidx.preference.PreferenceFragmentCompat
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceFragmentCompat
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -24,4 +24,5 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
         }
     }
+
 }
