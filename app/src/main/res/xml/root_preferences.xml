@@ -1,35 +1,40 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:onClick="sendEmail">
 
 	<PreferenceCategory app:title="@string/sound_header">
 
 		<SwitchPreferenceCompat
+			app:icon="@drawable/music"
 			app:key="music"
 			app:title="@string/music_title"
-			app:useSimpleSummaryProvider="true"
-			app:icon="@drawable/music"/>
+			app:useSimpleSummaryProvider="true" />
 
 		<SwitchPreferenceCompat
+			app:icon="@drawable/vibration"
 			app:key="vibration"
 			app:title="@string/vibration_title"
-			app:useSimpleSummaryProvider="true"
-			app:icon="@drawable/vibration"/>
+			app:useSimpleSummaryProvider="true" />
 
 	</PreferenceCategory>
 
 	<PreferenceCategory app:title="@string/font_header">
 
-		<SeekBarPreference app:key="text_size"
-			app:title="@string/text_size"
-			app:icon="@drawable/text_size2"/>
+		<SeekBarPreference
+			app:icon="@drawable/text_size2"
+			app:key="text_size"
+			app:title="@string/text_size" />
 	</PreferenceCategory>
 
 	<PreferenceCategory app:title="@string/contact">
 
 		<Preference
+			android:id="@+id/send_feedback"
+			android:onClick="sendEmail"
+			app:icon="@drawable/feedback"
 			app:key="feedback"
-			app:title="Send feedback"
 			app:summary="Report technical issues or suggest new features"
-			app:icon="@drawable/feedback" />
+			app:title="Send feedback" />
 	</PreferenceCategory>
 
 </PreferenceScreen>

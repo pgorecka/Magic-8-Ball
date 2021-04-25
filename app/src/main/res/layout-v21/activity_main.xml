@@ -3,8 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainActivity"
-
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
@@ -44,6 +42,23 @@
         app:srcCompat="@drawable/magic_ball" />
 
     <TextView
+        android:id="@+id/intro_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:hint="@string/intro_text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="18sp"
+        android:alpha="0.75"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/magic_ball_img"
+        app:layout_constraintVertical_bias="0.158" />
+
+    <TextView
         android:id="@+id/response_window"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,22 +78,6 @@
         app:layout_constraintVertical_bias="0.499"
         tools:text="1" />
 
-    <TextView
-        android:id="@+id/intro_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:hint="@string/intro_text"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/magic_ball_img"
-        app:layout_constraintVertical_bias="0.158" />
-
     <Switch
         android:id="@+id/theme_switch"
         android:layout_width="wrap_content"
@@ -91,6 +90,7 @@
         android:textColorLink="@color/white"
         android:thumbTint="@color/white"
         android:trackTint="@color/white"
+        android:alpha="0.75"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/shareButton"
         app:layout_constraintHorizontal_bias="0.04"
@@ -105,6 +105,7 @@
         android:layout_width="24dp"
         android:layout_height="26dp"
         android:background="@drawable/settings"
+        android:alpha="0.75"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/shareButton"
         app:layout_constraintHorizontal_bias="0.457"
@@ -120,6 +121,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/share"
         android:onClick="shareIntent"
+        android:alpha="0.75"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
