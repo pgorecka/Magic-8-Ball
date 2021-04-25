@@ -18,17 +18,12 @@
 
 	<PreferenceCategory app:title="@string/font_header">
 
-		<SwitchPreferenceCompat
-			app:key="text_size"
+		<SeekBarPreference app:key="text_size"
 			app:title="@string/text_size"
 			app:icon="@drawable/text_size2"/>
+	</PreferenceCategory>
 
-		<SwitchPreferenceCompat
-			app:dependency="sync"
-			app:key="attachment"
-			app:summaryOff="@string/attachment_summary_off"
-			app:summaryOn="@string/attachment_summary_on"
-			app:title="@string/attachment_title" />
+	<PreferenceCategory app:title="@string/contact">
 
 		<Preference
 			app:key="feedback"

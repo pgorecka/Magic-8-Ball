@@ -27,5 +27,6 @@
 	<string name="vibration_title">Vibration</string>
 	<string name="font_header">Font</string>
 	<string name="text_size">Text Size</string>
-	<string name="intro_text">Shake your phone or press ASK</string>
+	<string name="intro_text">Shake your phone to reveal answer</string>
+	<string name="contact">Contact</string> />
 </resources>
