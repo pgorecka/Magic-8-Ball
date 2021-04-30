@@ -28,5 +28,8 @@
 	<string name="font_header">Font</string>
 	<string name="text_size">Text Size</string>
 	<string name="intro_text">Shake your phone to reveal answer</string>
-	<string name="contact">Contact</string> />
+	<string name="contact">Contact</string>
+	<string name="label_subject_email">Magic 8 Ball App feedback</string>
+	<string name="label_send_email">Send</string>
+	/>
 </resources>
