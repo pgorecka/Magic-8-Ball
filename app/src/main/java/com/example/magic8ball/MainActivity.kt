@@ -20,8 +20,11 @@ import com.todo.shakeit.core.ShakeIt
 import com.todo.shakeit.core.ShakeListener
 
 
+
 // Allows the user to shake the ball and view the result on the screen
 class MainActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -35,6 +38,9 @@ class MainActivity : AppCompatActivity() {
         shakeToClick()
 
 
+
+
+
         val shakeBtn: Button = findViewById(R.id.ask_button)
         shakeBtn.setOnClickListener {
             shakeMagicBall()
@@ -46,7 +52,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
     }
+
 
     // Shakes the ball and updates the screen with the result
     private fun shakeMagicBall() {

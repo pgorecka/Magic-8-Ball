@@ -4,12 +4,14 @@
 	<PreferenceCategory app:title="@string/sound_header">
 
 		<SwitchPreferenceCompat
+			android:id="@+id/music_switch"
 			app:icon="@drawable/music"
 			app:key="music"
 			app:title="@string/music_title"
 			app:useSimpleSummaryProvider="true" />
 
 		<SwitchPreferenceCompat
+			android:id="@+id/vibration_switch"
 			app:icon="@drawable/vibration"
 			app:key="vibration"
 			app:title="@string/vibration_title"
