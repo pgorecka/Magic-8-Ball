@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreferenceCompat
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -14,7 +15,6 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
-
 
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -33,15 +33,14 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
             sendEmail()
-
             playSound()
-
 
         }
 
+        // Connects to email apps on target device
         private fun sendEmail() {
-            val sendBtn = findPreference<Preference>("feedback")
 
+            val sendBtn = findPreference<Preference>("feedback")
             sendBtn?.setOnPreferenceClickListener {
 
                 val emailIntent = Intent(
@@ -63,46 +62,25 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
+        private fun playSound() {
 
-        fun playSound() {
-            val musicSwitch = findPreference<Preference>("sound")
             val mediaPlayer = create(context, R.raw.music)
-            musicSwitch?.setOnPreferenceChangeListener { preference, newValue ->
-                mediaPlayer.start()
-                println("hello there")
-                true
-            }
+            val musicSwitch = findPreference<SwitchPreferenceCompat>("music")
+            musicSwitch?.setOnPreferenceClickListener {
 
-
-        }
-
-    }
-}
-      /*  // 2. Pause playback
-        fun pauseSound(view: View) {
-            if (mMediaPlayer != null && mMediaPlayer!!.isPlaying) mMediaPlayer!!.pause()
-        }
-
-        // 3. {optional} Stops playback
-        fun stopSound(view: View) {
-            if (mMediaPlayer != null) {
-                mMediaPlayer!!.stop()
-                mMediaPlayer!!.release()
-                mMediaPlayer = null
-            }
-        }
-
-        // 4. Closes the MediaPlayer when the app is closed
-        override fun onStop() {
-            super.onStop()
-            if (mMediaPlayer != null) {
-                mMediaPlayer!!.release()
-                mMediaPlayer = null
+                if (musicSwitch.isChecked) {
+                    mediaPlayer.start()
+                    println("hello,music on")
+                }
+                if (!musicSwitch.isChecked) {
+                    mediaPlayer.stop()
+                    mediaPlayer.reset()
+                    mediaPlayer.release()
+                    println("hello,music off")
+                    playSound()
+                }
+                false
             }
         }
     }
-
-
 }
-    // 1. Plays the water sound  val sendBtn = findPreference<Preference>("feedback")
-*/

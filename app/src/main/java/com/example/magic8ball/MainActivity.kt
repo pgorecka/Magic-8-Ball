@@ -20,11 +20,8 @@ import com.todo.shakeit.core.ShakeIt
 import com.todo.shakeit.core.ShakeListener
 
 
-
 // Allows the user to shake the ball and view the result on the screen
 class MainActivity : AppCompatActivity() {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -32,14 +29,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         toggleDesign()
-
         ShakeIt.init(application)
-
         shakeToClick()
-
-
-
-
 
         val shakeBtn: Button = findViewById(R.id.ask_button)
         shakeBtn.setOnClickListener {
@@ -51,14 +42,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 
-
-    // Shakes the ball and updates the screen with the result
+    // Creates new ball object with 20 possible answers
     private fun shakeMagicBall() {
-        // Creates new ball object with 20 possible answers and shakes it
+
         val ball = MagicBall(20)
         val say = ball.answer()
         vibratePhone()
@@ -68,34 +56,11 @@ class MainActivity : AppCompatActivity() {
         resultTextView.text = say
     }
 
-    // Allow to switch between themes
-    @SuppressLint("NewApi", "UseSwitchCompatOrMaterialCode")
-    private fun toggleDesign() {
-        val toggleBtn: Switch = this.findViewById(R.id.theme_switch)
-        val ballImg: ImageView = this.findViewById(R.id.magic_ball_img)
-        val textStyle: TextView = this.findViewById(R.id.response_window)
-        val askBtn: Button = this.findViewById(R.id.ask_button)
-        val background: View = this.findViewById(R.id.mainActivity)
-
-        toggleBtn.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                ballImg.setImageResource(R.drawable.magic_ball_2)
-                textStyle.setTextColor(Color.parseColor("#000034"))
-                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(158, 121, 129))
-                background.setBackgroundResource(R.drawable.bg2)
-            }
-            else {
-                ballImg.setImageResource(R.drawable.magic_ball)
-                textStyle.setTextColor(Color.parseColor("#FFFFFFFF"))
-                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(0, 24, 58))
-                background.setBackgroundResource(R.drawable.bg1)
-            }
-        }
-    }
-
     // Detects device movement and shakes the ball
     private fun shakeToClick() {
+
         ShakeDetector.registerForShakeEvent(object : ShakeListener {
+
             override fun onShake() {
                 shakeMagicBall()
             }
@@ -104,7 +69,9 @@ class MainActivity : AppCompatActivity() {
 
     // Vibrates phone on click
     private fun vibratePhone() {
+
         val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
         if (Build.VERSION.SDK_INT >= 26) {
             vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
@@ -114,13 +81,42 @@ class MainActivity : AppCompatActivity() {
 
     // Allows sharing the app
     fun shareIntent(view: View) {
+
         val shareBtn = findViewById<Button>(R.id.shareButton)
+
         shareBtn.setOnClickListener {
+
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
             intent.putExtra(Intent.EXTRA_TEXT, "Hey Check out this Great app:")
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, "Share To:"))
+        }
+    }
+
+    // Allows to switch between themes
+    @SuppressLint("NewApi", "UseSwitchCompatOrMaterialCode")
+    private fun toggleDesign() {
+
+        val toggleBtn: Switch = this.findViewById(R.id.theme_switch)
+        val ballImg: ImageView = this.findViewById(R.id.magic_ball_img)
+        val textStyle: TextView = this.findViewById(R.id.response_window)
+        val askBtn: Button = this.findViewById(R.id.ask_button)
+        val background: View = this.findViewById(R.id.mainActivity)
+
+        toggleBtn.setOnCheckedChangeListener { _, isChecked ->
+
+            if (isChecked) {
+                ballImg.setImageResource(R.drawable.magic_ball_2)
+                textStyle.setTextColor(Color.parseColor("#000034"))
+                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(158, 121, 129))
+                background.setBackgroundResource(R.drawable.bg2)
+            } else {
+                ballImg.setImageResource(R.drawable.magic_ball)
+                textStyle.setTextColor(Color.parseColor("#FFFFFFFF"))
+                askBtn.backgroundTintList = ColorStateList.valueOf(Color.rgb(0, 24, 58))
+                background.setBackgroundResource(R.drawable.bg1)
+            }
         }
     }
 }

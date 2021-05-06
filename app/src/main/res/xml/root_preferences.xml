@@ -5,6 +5,8 @@
 
 		<SwitchPreferenceCompat
 			android:id="@+id/music_switch"
+			android:soundEffectsEnabled="false"
+			app:defaultValue="false"
 			app:icon="@drawable/music"
 			app:key="music"
 			app:title="@string/music_title"
