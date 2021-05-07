@@ -10,11 +10,12 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 
 
-class SettingsActivity : AppCompatActivity() {
+open class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
+
 
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -22,27 +23,25 @@ class SettingsActivity : AppCompatActivity() {
                 .replace(R.id.settings, SettingsFragment())
                 .commit()
         }
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
     }
 
-    class SettingsFragment : PreferenceFragmentCompat() {
+    open class SettingsFragment : PreferenceFragmentCompat() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
             sendEmail()
             playSound()
-
+            vibrationOff()
         }
 
         // Connects to email apps on target device
         private fun sendEmail() {
 
             val sendBtn = findPreference<Preference>("feedback")
-            sendBtn?.setOnPreferenceClickListener {
 
+            sendBtn?.setOnPreferenceClickListener {
                 val emailIntent = Intent(
                     Intent.ACTION_SENDTO, Uri.fromParts(
                         "mailto", "p.gorecka@zoho.com", null
@@ -66,8 +65,8 @@ class SettingsActivity : AppCompatActivity() {
 
             val mediaPlayer = create(context, R.raw.music)
             val musicSwitch = findPreference<SwitchPreferenceCompat>("music")
-            musicSwitch?.setOnPreferenceClickListener {
 
+            musicSwitch?.setOnPreferenceClickListener {
                 if (musicSwitch.isChecked) {
                     mediaPlayer.start()
                     println("hello,music on")
@@ -82,5 +81,24 @@ class SettingsActivity : AppCompatActivity() {
                 false
             }
         }
-    }
-}
+
+        open fun vibrationOff(): Boolean {
+            // fun c() = MainActivity::vibratePhone
+            // val v = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
+            val vibrationSwitch = findPreference<SwitchPreferenceCompat>("vibration")
+
+            vibrationSwitch?.setOnPreferenceClickListener {
+                if (!vibrationSwitch.isChecked) {
+                    //    v.cancel()
+                    println("hello,vibration off")
+
+                } else println("It is on")
+                true
+
+            }
+            return false
+        }
+
+    }}
+
+

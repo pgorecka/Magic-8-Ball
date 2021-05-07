@@ -21,7 +21,7 @@ import com.todo.shakeit.core.ShakeListener
 
 
 // Allows the user to shake the ball and view the result on the screen
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     // Creates new ball object with 20 possible answers
     private fun shakeMagicBall() {
 
@@ -60,7 +61,6 @@ class MainActivity : AppCompatActivity() {
     private fun shakeToClick() {
 
         ShakeDetector.registerForShakeEvent(object : ShakeListener {
-
             override fun onShake() {
                 shakeMagicBall()
             }
@@ -80,15 +80,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Allows sharing the app
-    fun shareIntent(view: View) {
+    fun shareIntent(view: View ) {
 
         val shareBtn = findViewById<Button>(R.id.shareButton)
 
         shareBtn.setOnClickListener {
-
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
-            intent.putExtra(Intent.EXTRA_TEXT, "Hey Check out this Great app:")
+            intent.putExtra(Intent.EXTRA_TEXT, "Hey Check out this app:")
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, "Share To:"))
         }
@@ -119,4 +118,26 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }
+
+/*
+
+  @SuppressLint("NewApi")
+    open fun vibratePhone() {
+
+        fun c(): Boolean = SettingsActivity.SettingsFragment::vibrationOff()
+        c()
+
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+       // val vbSwitch: Preference = c.findViewById<Preference>("vibration_switch")
+
+        if (c()){// (Build.VERSION.SDK_INT >= 26)  {
+
+            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+           // vibrator.run { 200 }
+            vibrator.cancel()
+        }
+    }
+ */
